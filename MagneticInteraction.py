@@ -30,3 +30,5 @@ if __name__ == '__main__':
     gF = landeG(F,I,J,gI,gJ)
     
     print(gF)
+
+# test

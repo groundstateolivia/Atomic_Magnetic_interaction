@@ -66,4 +66,40 @@ def LadderOp(J,sign):
     return matrix
 
 def idMatrix(J):
+    '''
+    Identity matrix
+    '''
     return np.eye(NumStates(J))
+
+def J_z(J):
+    '''
+    returns matrix representation for z angular momentum operator
+    
+    :param J: spin number
+    '''
+    N = NumStates(J)
+    matrix = np.zeros((N,N), dtype=complex)
+
+    for m in np.arange(-J,J+1):
+        matrix[angular_index(J,m),angular_index(J,m)] = m
+
+    return matrix
+
+def J_x(J):
+    '''
+    returns matrix representation for x angular momentum operator
+    
+    :param J: spin number
+    '''
+    return 0.5*(LadderOp(J,1)+LadderOp(J,-1))
+
+def J_y(J):
+    '''
+    returns matrix representation for y angular momentum operator
+    
+    :param J: spin number
+    '''
+    return -1j*0.5*(LadderOp(J,1)-LadderOp(J,-1))
+
+def dotProd(I,J):
+    return np.kron(J_x(I), J_x(J)) + np.kron(J_y(I), J_y(J)) + np.kron(J_z(I), J_z(J))

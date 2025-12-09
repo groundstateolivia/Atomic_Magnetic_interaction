@@ -64,3 +64,6 @@ def LadderOp(J,sign):
         matrix[angular_index(J,m+sign),angular_index(J,m)] = np.sqrt(J*(J+1)-m*(m+sign))
     
     return matrix
+
+def idMatrix(J):
+    return np.eye(NumStates(J))
